@@ -1,11 +1,3 @@
-Если предположить, что структура базы данных такая:
-
-TABLE products (product_id INT PRIMARY KEY, product_name VARCHAR(30));
-TABLE categories (category_id INT PRIMARY KEY, category_name VARCHAR(30));
-TABLE product_category_pairs (product_id INT, category_id INT, PRIMARY KEY((product_id, category_id), FOREIGN KEY(product_id) REFERENCES products(product_id), FOREIGN KEY(category_id) REFERENCES categories(category_id))
-
-то запрос будет таким:
-
 SELECT
 products.product_name,
 categories.category_name
@@ -15,3 +7,8 @@ LEFT JOIN
 product_category_pairs ON products.product_id = product_category_pairs.product_id
 LEFT JOIN
 categories ON product_category_pairs.category_id = categories.category_id;
+
+Это если предположить, что структура базы данных, такая:
+TABLE products (product_id INT PRIMARY KEY, product_name VARCHAR(30));
+TABLE categories (category_id INT PRIMARY KEY, category_name VARCHAR(30));
+TABLE product_category_pairs (product_id INT, category_id INT, PRIMARY KEY((product_id, category_id), FOREIGN KEY(product_id) REFERENCES products(product_id), FOREIGN KEY(category_id) REFERENCES categories(category_id))
